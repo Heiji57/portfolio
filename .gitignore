@@ -1,0 +1,14 @@
+# Env files are copied into Superset workspaces by .superset/setup.sh
+.env
+.env.*
+!.env.example
+
+# Superset per-workspace state
+.superset/.workspace.env
+.superset/.run.pid
+.superset/config.local.json
+
+# Build
+node_modules
+dist
+*.local
