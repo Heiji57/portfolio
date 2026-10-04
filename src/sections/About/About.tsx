@@ -13,7 +13,7 @@ export function About() {
     <Section
       id="me"
       ref={ref}
-      className="relative flex flex-wrap items-center gap-4 overflow-hidden py-[clamp(64px,8vw,96px)]"
+      className="relative flex min-h-screen flex-wrap content-center items-center gap-4 overflow-hidden py-[clamp(64px,8vw,96px)]"
     >
       <div
         className="pointer-events-none absolute -top-10 -left-[120px] h-[760px] w-[900px]"
@@ -26,9 +26,9 @@ export function About() {
         eyebrow="/ 03 About"
         title={['About', 'Me']}
         size="2xl"
-        className="relative z-1 min-w-0 flex-[1_1_320px] gap-8"
+        className="relative z-1 min-w-0 flex-[1_1_320px] gap-8 ml-30"
       >
-        <p className="m-0 max-w-[900px] font-mono text-body leading-[1.75] text-pretty break-words">{about}</p>
+        <p className="m-0 max-w-[850px] font-mono text-body leading-[1.75] text-pretty break-words">{about}</p>
       </SectionHeader>
     </Section>
   );

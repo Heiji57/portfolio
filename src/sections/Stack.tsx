@@ -4,12 +4,12 @@ import { stack } from '@/data/profile';
 
 export function Stack() {
   return (
-    <Section id="stack" bordered={false} className="flex flex-wrap gap-12 py-[clamp(64px,9vw,120px)]">
+    <Section id="stack" bordered={false} className="flex min-h-screen flex-wrap content-center items-center gap-12 py-[clamp(64px,9vw,120px)]">
       <SectionHeader
         eyebrow="/ 02 Stack"
         title={['My', 'Stack']}
         size="md"
-        className="sticky top-12 flex-[1_1_320px] gap-5 self-start"
+        className="sticky top-12 flex-[1_1_320px] gap-5"
       >
         <p className="m-0 max-w-80 text-body leading-[1.65] text-pretty text-fg-subtle">{stack.description}</p>
       </SectionHeader>

@@ -13,7 +13,7 @@
     font-family: var(--font-sans);
     line-height: normal;
     -webkit-font-smoothing: antialiased;
-    @apply wrap-break-word;
+    @apply wrap-break-word break-keep;
   }
 
   a {

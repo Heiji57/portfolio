@@ -7,11 +7,11 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      className="flex min-h-screen flex-col gap-[clamp(64px,8vw,112px)] pt-[clamp(96px,12vw,160px)]"
+      className="flex min-h-screen flex-col gap-[clamp(40px,6vh,112px)] pt-[clamp(64px,10vh,160px)]"
     >
       <SectionHeader eyebrow="/ 05 Contact" title={['Ask me', 'anything']} size="sm" />
 
-      <div className="grid flex-1 grid-cols-[repeat(auto-fit,minmax(260px,1fr))] content-start gap-12 pb-[clamp(64px,8vw,120px)]">
+      <div className="grid flex-1 grid-cols-[repeat(auto-fit,minmax(260px,1fr))] content-start gap-12 pb-[clamp(32px,6vh,120px)]">
         {faqs.map(({ question, answer }, i) => (
           <article key={question} className="flex flex-col gap-6 border-t border-line-strong pt-8">
             <span className="font-display text-display-2xs">Q{i + 1}.</span>
@@ -27,7 +27,7 @@ export function Contact() {
             key={label}
             href={href}
             className={cx(
-              'flex flex-col gap-1.5 py-11 hover:bg-fg hover:text-bg',
+              'flex flex-col gap-1.5 py-11 transition-colors hover:bg-surface-hover',
               i === 0 ? 'px-gutter' : 'border-l border-line px-8',
             )}
           >

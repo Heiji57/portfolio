@@ -17,15 +17,17 @@ export function Projects({ onOpen }: { onOpen: (index: number) => void }) {
     <Section
       id="projects"
       ref={ref}
-      className="flex flex-col gap-[clamp(80px,10vw,140px)] pt-[clamp(72px,9vw,120px)] pb-[clamp(96px,12vw,180px)]"
+      className="flex flex-col"
     >
-      <div className="flex flex-wrap items-end justify-between gap-6">
+      <div className="flex min-h-screen flex-wrap content-center items-end justify-between gap-6 py-[clamp(72px,9vw,120px)]">
         <SectionHeader eyebrow="/ 04 Projects" title={['Selected', 'Work']} size="lg" />
         <span className="font-mono text-label text-fg-muted uppercase">{range}</span>
       </div>
 
       {projects.map((project, i) => (
-        <ProjectCard key={project.title} project={project} index={i} focus={focus[i] ?? 1} onOpen={() => onOpen(i)} />
+        <div key={project.title} className="flex min-h-screen flex-col justify-center py-[clamp(48px,6vw,80px)]">
+          <ProjectCard project={project} index={i} focus={focus[i] ?? 1} onOpen={() => onOpen(i)} />
+        </div>
       ))}
     </Section>
   );
