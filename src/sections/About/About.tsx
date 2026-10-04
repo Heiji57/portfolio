@@ -28,7 +28,7 @@ export function About() {
         size="2xl"
         className="relative z-1 min-w-0 flex-[1_1_320px] gap-8"
       >
-        <p className="m-0 max-w-[520px] font-mono text-body leading-[1.75] text-pretty">{about}</p>
+        <p className="m-0 max-w-[900px] font-mono text-body leading-[1.75] text-pretty break-words">{about}</p>
       </SectionHeader>
     </Section>
   );
