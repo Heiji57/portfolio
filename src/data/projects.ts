@@ -15,14 +15,14 @@ export const galleryCaptions = ['메인 화면', '핵심 기능', '관리 · 설
 
 export const projects: Project[] = [
   {
-    title: 'Dotori',
-    category: 'Web Service',
-    year: '2025',
-    summary: '기숙사 외출·벌점·세탁기 예약을 한곳에서 처리하는 교내 기숙사 관리 서비스.',
-    role: 'Frontend Lead',
-    period: '2025.03 — 2025.11',
-    team: 'FE 2 · BE 2 · Design 1',
-    stack: 'Next.js · TS · NestJS',
+    title: '책마루',
+    category: 'App Service',
+    year: '2026',
+    summary: '도서관 책 대여를 할 수 있고, 책 검색 및 추천을 받을 수 있는 교내 도서 관리 서비스.',
+    role: 'PM · BE',
+    period: '2026.1 — 2026.5',
+    team: 'FE 2 · BE 1 · AI 1 · DE 2',
+    stack: 'Spring Boot · Kotlin PostgreSQL · Redis OAuth2 · QueryDSL',
     sections: [
       {
         title: 'Problem',

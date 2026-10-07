@@ -38,7 +38,7 @@ export const faqs = [
   },
   {
     question: '일할 때 가장 중요하게 생각하는 건?',
-    answer: '조직이 원하는 것을 찾고, 그에 맞는 해결책을 제시하는 것입니다.',
+    answer: '조직이 원하는 것을 찾고, 그에 맞는 해결책을 제시하는 것 입니다.',
   },
   {
     question: '요즘 관심 있는 것은?',
@@ -49,6 +49,6 @@ export const faqs = [
 export const contactLinks = [
   { label: 'Email', value: 'heiji040804@gmail.com →', href: 'mailto:heiji040804@gmail.com' },
   { label: 'GitHub', value: 'Heiji ↗', href: 'https://github.com/Heiji57' },
-  { label: 'LinkedIn', value: 'minsu ↗', href: 'https://www.linkedin.com/in/minsu-kim-501883392/' },
+  { label: 'LinkedIn', value: 'minsu ↗', href: 'https://www.linkedin.com/in/minsu-gim-501883392/' },
   { label: 'Resume', value: 'minsu.pdf ↓', href: 'minsu.pdf' },
 ] as const;
