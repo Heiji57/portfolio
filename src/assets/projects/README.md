@@ -4,7 +4,7 @@
 
 ```
 src/assets/projects/
-  dotori/
+  chaekmaru/
     cover.webp   ← 프로젝트 목록 카드 + 상세 하단 "다음 프로젝트" 미리보기
     01.webp      ← 상세 갤러리 1번 슬라이드 (메인 화면)
     02.webp      ← 2번 슬라이드 (핵심 기능)
