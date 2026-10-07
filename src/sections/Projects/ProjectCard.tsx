@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import { Placeholder } from '@/components/Placeholder';
+import { ProjectImage } from '@/components/ProjectImage';
 import type { Project } from '@/data/projects';
 import { clamp01, pad2 } from '@/lib/format';
 
@@ -32,13 +32,15 @@ export function ProjectCard({ project, index, focus, onOpen }: ProjectCardProps)
         transform: `scale(${0.94 + 0.06 * focus})`,
       }}
     >
-      <Placeholder
+      <ProjectImage
+        src={project.cover}
+        alt={`${project.title} cover`}
         variant="cover"
         className="aspect-[16/11] max-w-[860px] flex-[1.6_1_600px] outline-offset-[10px] transition-[outline-color] duration-350"
         style={{ outline: `1px solid ${sharp ? 'rgba(237,237,237,.35)' : 'rgba(237,237,237,0)'}` }}
       >
         [ {project.title} cover ]
-      </Placeholder>
+      </ProjectImage>
 
       <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-[22px]">
         <span

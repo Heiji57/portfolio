@@ -85,7 +85,9 @@ export function ProjectDetail({ index, onOpen, onClose }: ProjectDetailProps) {
             ))}
           </div>
 
-          <ProjectGallery key={index} />
+          {project.gallery.length > 0 && (
+            <ProjectGallery key={index} title={project.title} slides={project.gallery} />
+          )}
 
           {project.sections.map((section, i) => (
             <section key={section.title} className="mt-4 flex flex-col gap-[18px]">
