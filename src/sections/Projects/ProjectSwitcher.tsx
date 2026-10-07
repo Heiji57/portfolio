@@ -1,5 +1,5 @@
 import { useState, type MouseEvent } from 'react';
-import { Placeholder } from '@/components/Placeholder';
+import { ProjectImage } from '@/components/ProjectImage';
 import { projects } from '@/data/projects';
 import { cx, pad2 } from '@/lib/format';
 
@@ -69,7 +69,13 @@ export function ProjectSwitcher({ current, onOpen }: { current: number; onOpen: 
             focusRing,
           )}
         >
-          <Placeholder className="aspect-[16/10] max-w-60 text-caption">[{preview.title}]</Placeholder>
+          <ProjectImage
+            src={preview.cover}
+            alt={`${preview.title} cover`}
+            className="aspect-[16/10] max-w-60 text-caption"
+          >
+            [{preview.title}]
+          </ProjectImage>
           <span className="flex flex-col gap-2">
             <span className="font-mono text-micro text-fg-muted uppercase">
               {selected === next ? '다음 프로젝트 · 클릭해서 열기' : '바로 이동 · 클릭해서 열기'}

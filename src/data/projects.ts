@@ -1,4 +1,15 @@
-export interface Project {
+import { pad2 } from '@/lib/format';
+import { imagesFor } from './projectImages';
+
+export interface GallerySlide {
+  caption: string;
+  /** Image URL; undefined renders the striped placeholder. */
+  src?: string;
+}
+
+interface ProjectEntry {
+  /** Folder name under `src/assets/projects/` holding this project's images. */
+  slug: string;
   title: string;
   category: string;
   year: string;
@@ -8,13 +19,35 @@ export interface Project {
   team: string;
   stack: string;
   sections: { title: string; body: string }[];
+  /** Per-project gallery captions; defaults to `galleryCaptions`. */
+  galleryCaptions?: string[];
 }
 
-/** Captions for the five gallery slides shown on every project detail page. */
+export interface Project extends Omit<ProjectEntry, 'galleryCaptions'> {
+  cover?: string;
+  gallery: GallerySlide[];
+}
+
+/** Default captions for the gallery slides on every project detail page. */
 export const galleryCaptions = ['메인 화면', '핵심 기능', '관리 · 설정 화면', '아키텍처', '결과 · 지표'];
 
-export const projects: Project[] = [
+/** Pairs captions with image files by position; extra images get a numbered caption. */
+function withImages({ galleryCaptions: captions = galleryCaptions, ...entry }: ProjectEntry): Project {
+  const { cover, gallery } = imagesFor(entry.slug);
+  const count = Math.max(captions.length, gallery.length);
+  return {
+    ...entry,
+    cover,
+    gallery: Array.from({ length: count }, (_, i) => ({
+      caption: captions[i] ?? `Image ${pad2(i + 1)}`,
+      src: gallery[i],
+    })),
+  };
+}
+
+const entries: ProjectEntry[] = [
   {
+    slug: 'dotori',
     title: 'Dotori',
     category: 'Web Service',
     year: '2025',
@@ -36,6 +69,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'moim',
     title: 'Moim',
     category: 'Web Platform',
     year: '2025',
@@ -51,6 +85,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'pickle',
     title: 'Pickle',
     category: 'Mobile App',
     year: '2025',
@@ -66,6 +101,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'log-it',
     title: 'Log.it',
     category: 'Blog Engine',
     year: '2024',
@@ -81,3 +117,5 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const projects: Project[] = entries.map(withImages);
