@@ -50,7 +50,7 @@ export function ProjectGallery({ title, slides }: { title: string; slides: Galle
               kind={kind}
               active={on}
               onDuration={(s) => setVideoTicks((t) => ({ ...t, [i]: Math.max(1, Math.ceil((s * 1000) / TICK_MS)) }))}
-              alt={`${title} — ${caption}`}
+              alt={caption ? `${title} — ${caption}` : `${title} ${pad2(i + 1)}`}
               stripes="lg"
               className="absolute inset-0 text-label"
               style={{
@@ -58,15 +58,21 @@ export function ProjectGallery({ title, slides }: { title: string; slides: Galle
                 transition: 'opacity .9s ease',
               }}
             >
-              [{caption}]
+              [{caption ?? pad2(i + 1)}]
             </ProjectImage>
           );
         })}
       </div>
 
-      <span className="font-mono text-label">
-        {pad2(current + 1)} / {pad2(count)} <span className="text-fg-muted">— {slides[current]?.caption}</span>
-      </span>
+      <div className="flex flex-col gap-2">
+        <span className="font-mono text-label">
+          {pad2(current + 1)} / {pad2(count)}
+          {slides[current].caption && <span className="text-fg-muted"> — {slides[current].caption}</span>}
+        </span>
+        {slides[current].description && (
+          <p className="m-0 text-small leading-[1.7] text-pretty text-fg-subtle">{slides[current].description}</p>
+        )}
+      </div>
     </div>
   );
 }
