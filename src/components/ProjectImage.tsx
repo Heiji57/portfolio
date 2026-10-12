@@ -16,7 +16,7 @@ export function ProjectImage({ src, alt, className, style, ...placeholder }: Pro
 
   return (
     <div className={cx('overflow-hidden bg-surface', className)} style={style}>
-      <img src={src} alt={alt} loading="lazy" decoding="async" className="block size-full object-cover" />
+      <img src={src} alt={alt} loading="lazy" decoding="async" className="block size-full object-contain" />
     </div>
   );
 }
