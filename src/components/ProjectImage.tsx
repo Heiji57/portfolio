@@ -19,7 +19,7 @@ export function ProjectImage({ src, alt, fit = 'contain', overlay, className, st
   if (!src) return <Placeholder className={className} style={style} {...placeholder} />;
 
   return (
-    <div className={cx('relative overflow-hidden bg-surface', className)} style={style}>
+    <div className={cx('overflow-hidden bg-surface', !!overlay && 'relative', className)} style={style}>
       <img
         src={src}
         alt={alt}
