@@ -1,9 +1,12 @@
-import { pad2 } from '@/lib/format';
-import { mediaFor, type Media } from './projectMedia';
+import { mediaFor, type GalleryMedia, type Media } from './projectMedia';
 
-export interface GallerySlide extends Media {
-  caption: string;
+/** Text shown under a gallery slide: a short caption on the counter line, plus an optional paragraph. */
+export interface SlideText {
+  caption?: string;
+  description?: string;
 }
+
+export interface GallerySlide extends GalleryMedia, SlideText {}
 
 export interface ProjectSection {
   title: string;
@@ -27,25 +30,25 @@ interface ProjectEntry {
   stack: string;
   /** Case-study sections; a section shows `body` as a paragraph, then `items` as a bullet list. */
   sections: ProjectSection[];
-  /** Per-project gallery captions; defaults to `galleryCaptions`. */
-  galleryCaptions?: string[];
+  /**
+   * Text for the gallery slides, keyed by file name without extension. Slides without an entry show no text.
+   * @example gallery: { '01': { caption: '메인 화면', description: '문서 목록과 실시간 편집 화면.' } }
+   */
+  gallery?: Record<string, SlideText>;
 }
 
-export interface Project extends Omit<ProjectEntry, 'galleryCaptions'> {
+export interface Project extends Omit<ProjectEntry, 'gallery'> {
   cover?: Media;
   gallery: GallerySlide[];
 }
 
-/** Default captions for the gallery slides on every project detail page. */
-export const galleryCaptions = ['메인 화면', '핵심 기능', '관리 · 설정 화면', '아키텍처', '결과 · 지표'];
-
-/** One slide per media file, captioned by position; files beyond the captions get a numbered caption. */
-function withImages({ galleryCaptions: captions = galleryCaptions, ...entry }: ProjectEntry): Project {
+/** One slide per media file, with the text registered for its file name. */
+function withImages({ gallery: texts = {}, ...entry }: ProjectEntry): Project {
   const { cover, gallery } = mediaFor(entry.slug);
   return {
     ...entry,
     cover,
-    gallery: gallery.map((media, i) => ({ ...media, caption: captions[i] ?? `Image ${pad2(i + 1)}` })),
+    gallery: gallery.map((media) => ({ ...media, ...texts[media.name] })),
   };
 }
 

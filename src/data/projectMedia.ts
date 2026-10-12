@@ -18,14 +18,19 @@ export interface Media {
   kind: 'image' | 'video';
 }
 
+export interface GalleryMedia extends Media {
+  /** File name without extension, e.g. `01`; the key for per-slide text in `projects.ts`. */
+  name: string;
+}
+
 export interface ProjectMedia {
   cover?: Media;
-  gallery: Media[];
+  gallery: GalleryMedia[];
 }
 
 const VIDEO_EXT = /\.(mp4|webm|mov|m4v)$/i;
 
-const bySlug = new Map<string, { cover?: Media; gallery: [name: string, media: Media][] }>();
+const bySlug = new Map<string, { cover?: Media; gallery: GalleryMedia[] }>();
 
 for (const [path, src] of Object.entries(files)) {
   const [slug, file] = path.split('/').slice(-2);
@@ -34,15 +39,13 @@ for (const [path, src] of Object.entries(files)) {
   const media: Media = { src, kind: VIDEO_EXT.test(file) ? 'video' : 'image' };
   const entry = bySlug.get(slug) ?? { gallery: [] };
   if (name.toLowerCase() === 'cover') entry.cover = media;
-  else entry.gallery.push([name, media]);
+  else entry.gallery.push({ ...media, name });
   bySlug.set(slug, entry);
 }
 
 export function mediaFor(slug: string): ProjectMedia {
   const entry = bySlug.get(slug);
   if (!entry) return { gallery: [] };
-  const gallery = [...entry.gallery]
-    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-    .map(([, media]) => media);
+  const gallery = [...entry.gallery].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
   return { cover: entry.cover, gallery };
 }
