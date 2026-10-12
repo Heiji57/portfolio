@@ -36,8 +36,12 @@ export function ProjectCard({ project, index, focus, onOpen }: ProjectCardProps)
         src={project.cover}
         alt={`${project.title} cover`}
         fit="cover"
-        blur
-        overlay={<span className="font-display text-display-xs leading-[.9] text-white uppercase">{project.title}</span>}
+        overlay={
+          <span className="flex flex-col items-center gap-5 text-white">
+            <span className="font-display text-display-xs leading-[.9] uppercase">{project.title}</span>
+            <span className="border-b border-white pb-1.5 text-body">Project Detail ↗</span>
+          </span>
+        }
         variant="cover"
         className="aspect-[16/11] max-w-[860px] flex-[1.6_1_600px] outline-offset-[10px] transition-[outline-color] duration-350"
         style={{ outline: `1px solid ${sharp ? 'rgba(237,237,237,.35)' : 'rgba(237,237,237,0)'}` }}

@@ -7,9 +7,7 @@ interface ProjectImageProps extends ComponentProps<typeof Placeholder> {
   alt: string;
   /** `cover` fills the box and crops overflow; `contain` shows the whole image. */
   fit?: 'cover' | 'contain';
-  /** Blurs the image (scaled up slightly so the soft edges stay hidden). */
-  blur?: boolean;
-  /** Centred over the image; only shown when `src` is set. */
+  /** Centred over the image on a dark scrim; only shown when `src` is set. */
   overlay?: ReactNode;
 }
 
@@ -17,7 +15,7 @@ interface ProjectImageProps extends ComponentProps<typeof Placeholder> {
  * Real screenshot when `src` is set, otherwise the striped placeholder with `children` as its label.
  * The image is wrapped so sizing classes (aspect, flex, absolute) behave the same either way.
  */
-export function ProjectImage({ src, alt, fit = 'contain', blur, overlay, className, style, ...placeholder }: ProjectImageProps) {
+export function ProjectImage({ src, alt, fit = 'contain', overlay, className, style, ...placeholder }: ProjectImageProps) {
   if (!src) return <Placeholder className={className} style={style} {...placeholder} />;
 
   return (
@@ -27,9 +25,9 @@ export function ProjectImage({ src, alt, fit = 'contain', blur, overlay, classNa
         alt={alt}
         loading="lazy"
         decoding="async"
-        className={cx('block size-full', fit === 'cover' ? 'object-cover' : 'object-contain', blur && 'scale-110 blur-md')}
+        className={cx('block size-full', fit === 'cover' ? 'object-cover' : 'object-contain')}
       />
-      {overlay && <div className="absolute inset-0 flex items-center justify-center bg-black/30 p-6 text-center">{overlay}</div>}
+      {overlay && <div className="absolute inset-0 flex items-center justify-center bg-[rgba(0,0,0,.55)] p-6 text-center">{overlay}</div>}
     </div>
   );
 }
