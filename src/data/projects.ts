@@ -59,7 +59,7 @@ const entries: ProjectEntry[] = [
     role: 'PM · BE',
     period: '2026.03 — Present',
     team: '산학협력 팀 5명',
-    stack: 'Kubernetes · ReBAC / RBAC · CI/CD',
+    stack: 'Kubernetes · ReBAC / RBAC · CI/CD · FastAPI',
     sections: [
       {
         title: '프로젝트 개요',
