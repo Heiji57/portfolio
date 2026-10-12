@@ -33,7 +33,8 @@ export function ProjectCard({ project, index, focus, onOpen }: ProjectCardProps)
       }}
     >
       <ProjectImage
-        src={project.cover}
+        src={project.cover?.src}
+        kind={project.cover?.kind}
         alt={`${project.title} cover`}
         fit="cover"
         overlay={
