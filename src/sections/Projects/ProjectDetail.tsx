@@ -95,7 +95,21 @@ export function ProjectDetail({ index, onOpen, onClose }: ProjectDetailProps) {
                 <span className="mr-3 font-mono text-ui text-fg-muted">{pad2(i + 1)}</span>
                 {section.title}
               </h3>
-              <p className="m-0 text-body-lg leading-[1.9] text-pretty text-fg-soft">{section.body}</p>
+              {section.body && (
+                <p className="m-0 text-body-lg leading-[1.9] text-pretty text-fg-soft">{section.body}</p>
+              )}
+              {section.items && (
+                <ul className="m-0 flex list-none flex-col gap-3 p-0">
+                  {section.items.map((item) => (
+                    <li
+                      key={item}
+                      className="relative pl-5 text-body-lg leading-[1.8] text-pretty text-fg-soft before:absolute before:left-0 before:text-fg-muted before:content-['—']"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
           ))}
         </article>
