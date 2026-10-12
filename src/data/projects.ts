@@ -151,7 +151,7 @@ const entries: ProjectEntry[] = [
     role: 'Full-stack · AI',
     period: '2026.05 — Present',
     team: 'Solo',
-    stack: 'FastAPI · PostgreSQL(pgvector) · Redis · Celery · Gemini · React',
+    stack: 'FastAPI · PostgreSQL(pgvector) · Redis · Celery · Gemini · React · TypeScript',
     sections: [
       {
         title: '프로젝트 개요',
