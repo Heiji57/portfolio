@@ -70,7 +70,8 @@ export function ProjectSwitcher({ current, onOpen }: { current: number; onOpen: 
           )}
         >
           <ProjectImage
-            src={preview.cover}
+            src={preview.cover?.src}
+            kind={preview.cover?.kind}
             alt={`${preview.title} cover`}
             fit="cover"
             className="aspect-[16/10] max-w-60 text-caption"

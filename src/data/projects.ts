@@ -1,9 +1,8 @@
 import { pad2 } from '@/lib/format';
-import { imagesFor } from './projectImages';
+import { mediaFor, type Media } from './projectMedia';
 
-export interface GallerySlide {
+export interface GallerySlide extends Media {
   caption: string;
-  src: string;
 }
 
 export interface ProjectSection {
@@ -14,8 +13,8 @@ export interface ProjectSection {
 
 interface ProjectEntry {
   /**
-   * Folder under `src/assets/projects/` holding this project's images:
-   * `cover.*` is the card image in the Projects list, `01.*`, `02.*`… are the detail gallery slides.
+   * Folder under `src/assets/projects/` holding this project's images and videos:
+   * `cover.*` is the card media in the Projects list, `01.*`, `02.*`… are the detail gallery slides.
    */
   slug: string;
   title: string;
@@ -33,20 +32,20 @@ interface ProjectEntry {
 }
 
 export interface Project extends Omit<ProjectEntry, 'galleryCaptions'> {
-  cover?: string;
+  cover?: Media;
   gallery: GallerySlide[];
 }
 
 /** Default captions for the gallery slides on every project detail page. */
 export const galleryCaptions = ['메인 화면', '핵심 기능', '관리 · 설정 화면', '아키텍처', '결과 · 지표'];
 
-/** One slide per image file, captioned by position; images beyond the captions get a numbered caption. */
+/** One slide per media file, captioned by position; files beyond the captions get a numbered caption. */
 function withImages({ galleryCaptions: captions = galleryCaptions, ...entry }: ProjectEntry): Project {
-  const { cover, gallery } = imagesFor(entry.slug);
+  const { cover, gallery } = mediaFor(entry.slug);
   return {
     ...entry,
     cover,
-    gallery: gallery.map((src, i) => ({ caption: captions[i] ?? `Image ${pad2(i + 1)}`, src })),
+    gallery: gallery.map((media, i) => ({ ...media, caption: captions[i] ?? `Image ${pad2(i + 1)}` })),
   };
 }
 
