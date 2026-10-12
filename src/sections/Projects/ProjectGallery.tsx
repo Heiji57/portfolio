@@ -55,8 +55,7 @@ export function ProjectGallery({ title, slides }: { title: string; slides: Galle
               className="absolute inset-0 text-label"
               style={{
                 opacity: on ? 1 : 0,
-                transform: `scale(${on && kind === 'image' ? 1.07 : 1})`,
-                transition: 'opacity .9s ease, transform 4.2s linear',
+                transition: 'opacity .9s ease',
               }}
             >
               [{caption}]
