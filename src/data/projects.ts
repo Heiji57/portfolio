@@ -55,6 +55,14 @@ function withImages({ gallery: texts = {}, ...entry }: ProjectEntry): Project {
 const entries: ProjectEntry[] = [
   {
     slug: 'collabops',
+    gallery: {
+      '01': {
+        caption: '서비스 아이콘'
+      },
+      '02': {
+        caption: '문서 서비스 화면'
+      }
+    },
     title: 'Collabops',
     category: 'Industry Collaboration',
     year: '2026',
@@ -100,6 +108,11 @@ const entries: ProjectEntry[] = [
   },
   {
     slug: 'chaekmaru',
+    gallery: {
+      '01': {
+        caption: '서비스 소개 커버'
+      }
+    },
     title: '책마루',
     category: 'App Service',
     year: '2026',
@@ -147,6 +160,20 @@ const entries: ProjectEntry[] = [
   },
   {
     slug: 'archive',
+    gallery: {
+      '01': {
+        caption: '원간 캘린더 화면'
+      },
+      '02': {
+        caption: '회고 화면'
+      },
+      '03': {
+        caption: '주간 요약 화면'
+      },
+      '04': {
+        caption: '회고 본문 화면'
+      }
+    },
     title: 'ARCHIVE',
     category: 'AI Productivity',
     year: '2026',
