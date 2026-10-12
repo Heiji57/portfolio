@@ -3,12 +3,14 @@ import { imagesFor } from './projectImages';
 
 export interface GallerySlide {
   caption: string;
-  /** Image URL; undefined renders the striped placeholder. */
-  src?: string;
+  src: string;
 }
 
 interface ProjectEntry {
-  /** Folder name under `src/assets/projects/` holding this project's images. */
+  /**
+   * Folder under `src/assets/projects/` holding this project's images:
+   * `cover.*` is the card image in the Projects list, `01.*`, `02.*`… are the detail gallery slides.
+   */
   slug: string;
   title: string;
   category: string;
@@ -31,17 +33,13 @@ export interface Project extends Omit<ProjectEntry, 'galleryCaptions'> {
 /** Default captions for the gallery slides on every project detail page. */
 export const galleryCaptions = ['메인 화면', '핵심 기능', '관리 · 설정 화면', '아키텍처', '결과 · 지표'];
 
-/** Pairs captions with image files by position; extra images get a numbered caption. */
+/** One slide per image file, captioned by position; images beyond the captions get a numbered caption. */
 function withImages({ galleryCaptions: captions = galleryCaptions, ...entry }: ProjectEntry): Project {
   const { cover, gallery } = imagesFor(entry.slug);
-  const count = Math.max(captions.length, gallery.length);
   return {
     ...entry,
     cover,
-    gallery: Array.from({ length: count }, (_, i) => ({
-      caption: captions[i] ?? `Image ${pad2(i + 1)}`,
-      src: gallery[i],
-    })),
+    gallery: gallery.map((src, i) => ({ caption: captions[i] ?? `Image ${pad2(i + 1)}`, src })),
   };
 }
 
