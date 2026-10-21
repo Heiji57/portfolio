@@ -22,9 +22,9 @@ export const stack = {
   groups: [
     { category: 'Frontend', items: ['React', 'JavaScript', 'TypeScript', 'Tailwind'] },
     { category: 'Backend', items: ['Spring boot', 'Java', 'Kotlin', 'FastAPI', 'Python', 'Go'] },
-    { category: 'Database', items: ['PostgreSQL', 'MySQL', 'Redis', 'SQLlite'] },
+    { category: 'Database', items: ['PostgreSQL', 'MySQL', 'Redis', 'SQLite'] },
     { category: 'DevOps', items: ['Docker', 'AWS', 'Grafana', 'Cloudflare', 'GitHub Actions'] },
-    { category: 'Tools', items: ['GitHub', 'Git', 'JetBrains', 'VS Code', 'Super Set'] },
+    { category: 'Tools', items: ['GitHub', 'Git', 'JetBrains', 'VS Code', 'Superset'] },
   ],
 } as const;
 
