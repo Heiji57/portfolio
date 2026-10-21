@@ -20,7 +20,7 @@ export const codeLines: Segment[][] = [
   [['  @GetMapping', C.accent], ['("/me")', C.fg]],
   [['  public ', C.muted], ['ResponseEntity<Profile>', C.fg], [' me() {', C.fg]],
   [['    return ', C.muted], ['ResponseEntity.ok(', C.fg]],
-  [['      users.find(', C.fg], ['"jiho"', C.fg], [')', C.fg]],
+  [['      users.find(', C.fg], ['"minsu"', C.fg], [')', C.fg]],
   [['    );', C.fg]],
   [['  }', C.muted]],
   [['}', C.muted]],
@@ -29,9 +29,9 @@ export const codeLines: Segment[][] = [
 export const responseLines: Segment[] = [
   ['→ GET /api/v1/me', C.muted],
   ['200 OK · 14ms', C.fg],
-  ['{ "name": "Park Jiho",', C.fg],
-  ['  "role": "Backend Developer",', C.fg],
-  ['  "stack": ["Spring", "NestJS"] }', C.fg],
+  ['{ "name": "Gim Minsu",', C.fg],
+  ['  "role": "Product Engineer",', C.fg],
+  ['  "stack": ["Spring", "FastAPI"] }', C.fg],
 ];
 
 export const codeLength = codeLines.flat().reduce((n, [text]) => n + text.length, 0);

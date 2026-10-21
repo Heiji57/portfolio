@@ -1,5 +1,5 @@
 export const profile = {
-  name: 'Gim minsu',
+  name: 'Gim Minsu',
   nameKo: '김민수',
   title: 'Developer',
   availability: 'Open to CONTACT',
@@ -52,3 +52,12 @@ export const contactLinks = [
   { label: 'LinkedIn', value: 'minsu ↗', href: 'https://www.linkedin.com/in/minsu-gim-501883392/' },
   { label: 'Resume', value: 'minsu.pdf ↓', href: 'minsu.pdf' },
 ] as const;
+
+/** Search and AI-crawler metadata; keep `index.html`'s meta tags in sync with these. */
+export const site = {
+  url: 'https://portfolio.heijionline.com/',
+  title: '김민수 (Gim Minsu) — Developer Portfolio',
+  description:
+    '개발자 김민수(Gim Minsu)의 포트폴리오. Spring Boot · Kotlin · FastAPI 기반 서버 아키텍처 설계와 비용 최적화 경험, Collabops · 책마루 · ARCHIVE 프로젝트를 소개합니다.',
+  language: 'ko-KR',
+} as const;
