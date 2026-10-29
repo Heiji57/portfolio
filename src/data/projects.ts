@@ -119,11 +119,11 @@ const entries: ProjectEntry[] = [
     role: 'PM · BE',
     period: '2026.1 — 2026.5',
     team: 'FE 2 · BE 1 · AI 1 · DE 2',
-    stack: 'Spring Boot · Kotlin · PostgreSQL · Redis · OAuth2 · QueryDSL · SSE · FCM',
+    stack: 'Spring Boot · Kotlin · PostgreSQL · Redis · OAuth2 · QueryDSL · SSE',
     sections: [
       {
         title: '프로젝트 개요',
-        body: '교내 도서관의 책 대여·예약·반납과 도서 검색, 추천을 제공하는 도서 관리 서비스입니다. PM이자 유일한 백엔드 개발자로 참여해 Spring Boot · Kotlin 서버를 구축하고 REST API 약 50개를 설계했습니다. 2025년에 Java로 만든 첫 번째 버전을 유지보수가 쉬운 구조로 다시 만들기 위해 Kotlin과 Hexagonal · DDD 아키텍처로 재구축했습니다.',
+        body: '교내 도서관의 책 대여·예약·반납과 도서 검색, 추천을 제공하는 도서 관리 서비스입니다. PM이자 유일한 백엔드 개발자로 참여해 Spring Boot · Kotlin 서버를 구축하고 REST API 약 50개를 설계했습니다. 2025년에 Java로 만든 첫 번째 버전의 전체적인 서비스 개편 당시 유지보수가 쉬운 구조로 만들기 위해 Kotlin과 Hexagonal · DDD 아키텍처로 재구축했습니다.',
       },
       {
         title: '문제 정의',
@@ -140,7 +140,7 @@ const entries: ProjectEntry[] = [
           'PostgreSQL Full-Text Search 기반 소속 도서관별 도서 검색',
           '메인 · 랭킹 · 도서 상세 · 마이페이지 등 조회 화면',
           '도서 좋아요, 댓글과 댓글 좋아요 커뮤니티',
-          'OAuth2 소셜 로그인과 JWT 인증, SSE · FCM 실시간 알림',
+          'OAuth2 소셜 로그인과 JWT 인증, SSE를 활용한 실시간 갱신',
         ],
       },
       {
@@ -153,7 +153,7 @@ const entries: ProjectEntry[] = [
       },
       {
         title: '결과 및 회고',
-        body: '교내에서 3팀만 선발되는 AI Expo에서 11팀 중 2위로 선발되어 전시를 진행했습니다. 처음 Java로 만들 때는 기능을 빨리 붙이는 데 집중했다면, V2에서는 바뀔 가능성이 높은 부분을 어댑터로 분리해 두는 설계가 실제로 비용 절감 같은 큰 변경을 쉽게 만든다는 것을 경험했습니다. 기술 선택도 "많이 쓰는 도구"보다 우리 서비스 규모에 맞는 도구를 고르는 것이 중요하다는 것을 배웠습니다.',
+        body: '교내에서 3팀만 선발되는 AI Expo에서 11팀 중 2위로 선발되어 전시를 진행했습니다. 처음 Java로 만들 때는 기능을 빨리 붙이는 데 집중했다면, V2에서는 바뀔 가능성이 높은 부분을 어댑터로 분리해 두는 설계가 실제로 비용 절감 같은 큰 변경을 쉽게 만든다는 것을 경험했습니다. 기술 선택도 *많이 쓰는 도구*보다 우리 서비스 규모에 맞는 도구를 고르는 것이 중요하다는 것을 배웠습니다.',
       },
     ],
   },
@@ -200,7 +200,7 @@ const entries: ProjectEntry[] = [
           '할 일 관리 — 할 일 관리를 통한 일정 관리와 반복 할 일을 관리할 수 있으며 Google Calendar 동기화가 가능하다.',
           '회고록 작성 — 폴더 · 템플릿, GitHub 커밋 조회와 회고 push.',
           'AI 기간별 요약 — 자정 자동 요약과 오래걸리는 작업을 worker를 통해 관리하고, SSE 스트리밍 생성을 하여 작업 완료시 알림을 전송한다.',
-          '주제(Topic) 정리 — pgvector 임베딩으로 관련 회고를 찾아 주제별 회고 생성'
+          '주제 정리 — pgvector 임베딩으로 관련 회고를 찾아 주제별 회고 생성'
         ],
       },
       {
