@@ -19,6 +19,25 @@ src/assets/projects/
 - `cover`는 칸을 가득 채우고 넘치는 부분은 잘립니다(`object-cover`). 권장 비율 16:11.
 - 갤러리 이미지는 잘리지 않고 전체가 보입니다(`object-contain`). 칸과 비율이 다르면 여백이 생깁니다. 권장 비율 16:10.
 
+## 본문 이미지
+
+갤러리가 아니라 본문 섹션 안에 넣을 이미지(다이어그램 등)는 `<slug>/body/` 폴더에 넣습니다. 한 단계 아래 폴더라서 갤러리에는 잡히지 않습니다.
+
+```
+src/assets/projects/archive/body/pipeline-1-architecture.png
+```
+
+```ts
+// src/data/projects.ts — sections 안의 원하는 섹션에
+{
+  title: '서비스 파이프라인',
+  images: [{ file: 'pipeline-1-architecture', caption: '전체 아키텍처' }],
+}
+```
+
+- `file`은 확장자를 뺀 파일 이름입니다. 파일이 없으면 콘솔 경고만 남고 그 이미지는 건너뜁니다.
+- 이미지는 섹션의 `body` · `items` 아래에 순서대로 표시되고, 클릭하면 원본이 새 탭에서 열립니다.
+
 ## 영상
 
 - 영상은 소리 없이(muted) 반복 재생되며, 화면에 보일 때만 재생됩니다.

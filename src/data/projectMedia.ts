@@ -43,6 +43,31 @@ for (const [path, src] of Object.entries(files)) {
   bySlug.set(slug, entry);
 }
 
+/**
+ * Images placed inside a case-study section, kept out of the gallery by living one folder deeper:
+ *
+ *   src/assets/projects/<slug>/body/pipeline-1-architecture.png → `bodyImage('<slug>', 'pipeline-1-architecture')`
+ */
+const bodyFiles = import.meta.glob<string>('../assets/projects/*/body/*.{png,jpg,jpeg,webp,avif,gif,svg}', {
+  eager: true,
+  import: 'default',
+});
+
+const bodyBySlug = new Map<string, Map<string, string>>();
+
+for (const [path, src] of Object.entries(bodyFiles)) {
+  const [slug, , file] = path.split('/').slice(-3);
+  const name = file.replace(/\.[^.]+$/, '');
+  const entry = bodyBySlug.get(slug) ?? new Map<string, string>();
+  entry.set(name, src);
+  bodyBySlug.set(slug, entry);
+}
+
+/** URL of `src/assets/projects/<slug>/body/<name>.*`, or undefined when the file is missing. */
+export function bodyImage(slug: string, name: string): string | undefined {
+  return bodyBySlug.get(slug)?.get(name);
+}
+
 export function mediaFor(slug: string): ProjectMedia {
   const entry = bySlug.get(slug);
   if (!entry) return { gallery: [] };

@@ -1,4 +1,4 @@
-import { mediaFor, type GalleryMedia, type Media } from './projectMedia';
+import { bodyImage, mediaFor, type GalleryMedia, type Media } from './projectMedia';
 
 /** Text shown under a gallery slide: a short caption on the counter line, plus an optional paragraph. */
 export interface SlideText {
@@ -8,10 +8,26 @@ export interface SlideText {
 
 export interface GallerySlide extends GalleryMedia, SlideText {}
 
+/** An image shown inside a section, below its text. */
+export interface SectionImage {
+  src: string;
+  caption: string;
+}
+
 export interface ProjectSection {
   title: string;
   body?: string;
   items?: string[];
+  images?: SectionImage[];
+}
+
+interface ProjectSectionEntry extends Omit<ProjectSection, 'images'> {
+  /**
+   * Images from `src/assets/projects/<slug>/body/`, keyed by file name without extension.
+   * They are not part of the gallery.
+   * @example images: [{ file: 'pipeline-1-architecture', caption: '전체 아키텍처' }]
+   */
+  images?: { file: string; caption: string }[];
 }
 
 interface ProjectEntry {
@@ -28,8 +44,8 @@ interface ProjectEntry {
   period: string;
   team: string;
   stack: string;
-  /** Case-study sections; a section shows `body` as a paragraph, then `items` as a bullet list. */
-  sections: ProjectSection[];
+  /** Case-study sections; a section shows `body` as a paragraph, then `items` as a bullet list, then `images`. */
+  sections: ProjectSectionEntry[];
   /**
    * Text for the gallery slides, keyed by file name without extension. Slides without an entry show no text.
    * @example gallery: { '01': { caption: '메인 화면', description: '문서 목록과 실시간 편집 화면.' } }
@@ -37,18 +53,27 @@ interface ProjectEntry {
   gallery?: Record<string, SlideText>;
 }
 
-export interface Project extends Omit<ProjectEntry, 'gallery'> {
+export interface Project extends Omit<ProjectEntry, 'gallery' | 'sections'> {
   cover?: Media;
   gallery: GallerySlide[];
+  sections: ProjectSection[];
 }
 
-/** One slide per media file, with the text registered for its file name. */
-function withImages({ gallery: texts = {}, ...entry }: ProjectEntry): Project {
+/** One slide per media file, with the text registered for its file name; section images resolved to URLs. */
+function withImages({ gallery: texts = {}, sections, ...entry }: ProjectEntry): Project {
   const { cover, gallery } = mediaFor(entry.slug);
   return {
     ...entry,
     cover,
     gallery: gallery.map((media) => ({ ...media, ...texts[media.name] })),
+    sections: sections.map(({ images, ...section }) => ({
+      ...section,
+      images: images?.flatMap(({ file, caption }) => {
+        const src = bodyImage(entry.slug, file);
+        if (!src) console.warn(`[projects] missing body image: ${entry.slug}/body/${file}`);
+        return src ? [{ src, caption }] : [];
+      }),
+    })),
   };
 }
 
@@ -144,6 +169,15 @@ const entries: ProjectEntry[] = [
         ],
       },
       {
+        title: '서비스 파이프라인',
+        images: [
+          { file: 'pipeline-1-architecture', caption: '전체 아키텍처 — Web · App, Spring Boot 서버, AI 서버와 데이터 · 외부 연동' },
+          { file: 'pipeline-2-cache', caption: '메인 · 랭킹 캐시 — 스케줄러가 주기적으로 집계해 Redis에 적재하고, 요청은 캐시에서 응답' },
+          { file: 'pipeline-3-lending', caption: '대여 → 승인 → 알림 — 낙관적 락 재시도, 사서 SSE 갱신, SSE · FCM 알림과 연체 스케줄러' },
+          { file: 'pipeline-4-search', caption: '검색 · 추천 — PostgreSQL tsvector 전문 검색과 AI 서버의 추천 · 챗봇' },
+        ],
+      },
+      {
         title: '해결한 문제',
         items: [
           '검색 엔진 비용 — ElasticSearch를 걷어내고 기존 PostgreSQL 컬럼의 tsvector를 활용한 FTS 검색으로 전환해 검색 엔진 추가 비용을 100% 절감했습니다. Hexagonal 구조 덕분에 검색 어댑터만 교체하고 도메인 로직은 그대로 유지했습니다.',
@@ -201,6 +235,15 @@ const entries: ProjectEntry[] = [
           '회고록 작성 — 폴더 · 템플릿, GitHub 커밋 조회와 회고 push.',
           'AI 기간별 요약 — 자정 자동 요약과 오래걸리는 작업을 worker를 통해 관리하고, SSE 스트리밍 생성을 하여 작업 완료시 알림을 전송한다.',
           '주제 정리 — pgvector 임베딩으로 관련 회고를 찾아 주제별 회고 생성'
+        ],
+      },
+      {
+        title: '서비스 파이프라인',
+        images: [
+          { file: 'pipeline-1-architecture', caption: '전체 아키텍처 — FastAPI 서버와 역할별 Celery 워커(ai · beat · calendar), GHCR 배포' },
+          { file: 'pipeline-2-summary', caption: 'AI 기간별 회고 요약 — 사용자 타임존 기준 현지 01시 dispatch, 지터 분산, SSE 완료 알림' },
+          { file: 'pipeline-3-topic-digest', caption: '임베딩 → 주제 정리 — 임베딩 큐 드레이너, 생성 한도, 전체 / 증분 생성 판단' },
+          { file: 'pipeline-4-calendar', caption: 'Google Calendar 동기화 — 5분 주기 pull과 커밋 이후 push' },
         ],
       },
       {

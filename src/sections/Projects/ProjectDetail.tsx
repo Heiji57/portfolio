@@ -110,6 +110,20 @@ export function ProjectDetail({ index, onOpen, onClose }: ProjectDetailProps) {
                   ))}
                 </ul>
               )}
+              {section.images?.map((image) => (
+                <figure key={image.src} className="m-0 flex flex-col gap-3">
+                  <a href={image.src} target="_blank" rel="noreferrer" className="block border border-line bg-white p-3">
+                    <img
+                      src={image.src}
+                      alt={image.caption}
+                      loading="lazy"
+                      decoding="async"
+                      className="mx-auto block h-auto max-h-[80vh] max-w-full object-contain"
+                    />
+                  </a>
+                  <figcaption className="font-mono text-ui leading-[1.6] text-fg-muted">{image.caption}</figcaption>
+                </figure>
+              ))}
             </section>
           ))}
         </article>
