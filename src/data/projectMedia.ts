@@ -46,7 +46,7 @@ for (const [path, src] of Object.entries(files)) {
 /**
  * Images placed inside a case-study section, kept out of the gallery by living one folder deeper:
  *
- *   src/assets/projects/<slug>/body/pipeline-1-architecture.png → `bodyImage('<slug>', 'pipeline-1-architecture')`
+ *   src/assets/projects/<slug>/body/pipeline.png → `bodyImage('<slug>', 'pipeline')`
  */
 const bodyFiles = import.meta.glob<string>('../assets/projects/*/body/*.{png,jpg,jpeg,webp,avif,gif,svg}', {
   eager: true,
