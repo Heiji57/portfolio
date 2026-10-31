@@ -24,14 +24,14 @@ src/assets/projects/
 갤러리가 아니라 본문 섹션 안에 넣을 이미지(다이어그램 등)는 `<slug>/body/` 폴더에 넣습니다. 한 단계 아래 폴더라서 갤러리에는 잡히지 않습니다.
 
 ```
-src/assets/projects/archive/body/pipeline-1-architecture.png
+src/assets/projects/archive/body/pipeline.png
 ```
 
 ```ts
 // src/data/projects.ts — sections 안의 원하는 섹션에
 {
   title: '서비스 파이프라인',
-  images: [{ file: 'pipeline-1-architecture', caption: '전체 아키텍처' }],
+  images: [{ file: 'pipeline', caption: '서비스 파이프라인' }],
 }
 ```
 

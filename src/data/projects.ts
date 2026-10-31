@@ -25,7 +25,7 @@ interface ProjectSectionEntry extends Omit<ProjectSection, 'images'> {
   /**
    * Images from `src/assets/projects/<slug>/body/`, keyed by file name without extension.
    * They are not part of the gallery.
-   * @example images: [{ file: 'pipeline-1-architecture', caption: '전체 아키텍처' }]
+   * @example images: [{ file: 'pipeline', caption: '서비스 파이프라인' }]
    */
   images?: { file: string; caption: string }[];
 }
@@ -171,10 +171,11 @@ const entries: ProjectEntry[] = [
       {
         title: '서비스 파이프라인',
         images: [
-          { file: 'pipeline-1-architecture', caption: '전체 아키텍처 — Web · App, Spring Boot 서버, AI 서버와 데이터 · 외부 연동' },
-          { file: 'pipeline-2-cache', caption: '메인 · 랭킹 캐시 — 스케줄러가 주기적으로 집계해 Redis에 적재하고, 요청은 캐시에서 응답' },
-          { file: 'pipeline-3-lending', caption: '대여 → 승인 → 알림 — 낙관적 락 재시도, 사서 SSE 갱신, SSE · FCM 알림과 연체 스케줄러' },
-          { file: 'pipeline-4-search', caption: '검색 · 추천 — PostgreSQL tsvector 전문 검색과 AI 서버의 추천 · 챗봇' },
+          {
+            file: 'pipeline',
+            caption:
+              '서버 파이프라인 — 스케줄러가 집계한 페이지 캐시, tsvector 검색, 낙관적 락 대여와 SSE · FCM 알림 (Hexagonal 구조)',
+          },
         ],
       },
       {
@@ -240,10 +241,11 @@ const entries: ProjectEntry[] = [
       {
         title: '서비스 파이프라인',
         images: [
-          { file: 'pipeline-1-architecture', caption: '전체 아키텍처 — FastAPI 서버와 역할별 Celery 워커(ai · beat · calendar), GHCR 배포' },
-          { file: 'pipeline-2-summary', caption: 'AI 기간별 회고 요약 — 사용자 타임존 기준 현지 01시 dispatch, 지터 분산, SSE 완료 알림' },
-          { file: 'pipeline-3-topic-digest', caption: '임베딩 → 주제 정리 — 임베딩 큐 드레이너, 생성 한도, 전체 / 증분 생성 판단' },
-          { file: 'pipeline-4-calendar', caption: 'Google Calendar 동기화 — 5분 주기 pull과 커밋 이후 push' },
+          {
+            file: 'pipeline',
+            caption:
+              '서비스 파이프라인 — FastAPI 요청이 Redis 큐를 거쳐 역할별 Celery 워커로 분리되고, 결과는 pub/sub · SSE로 전달',
+          },
         ],
       },
       {
